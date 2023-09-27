@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  notifier:
+    image: flyitalyadsb/new_receivers_notifier
+    build: ./
+    environment:
+      CLIENTS_JSON: "${CLIENTS_JSON}"
+      FROM: "${FROM}"
+      TO: "${TO}"
+      SERVER: "${SERVER}"
+      PASSWORD: "${PASSWORD}"
