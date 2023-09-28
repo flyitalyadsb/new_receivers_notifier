@@ -2,13 +2,12 @@ version: '3'
 
 services:
   notifier:
-    #image:  ghcr.io/flyitalyadsb/new_receivers_notifier
-    build: ./
-    environment:
-      CLIENTS_JSON: ${CLIENTS_JSON}
-      FROM: ${FROM}
-      TO: ${TO}
-      SERVER: ${SERVER}
-      PASSWORD: ${PASSWORD}
+    image:  ghcr.io/flyitalyadsb/new_receivers_notifier
+    #build: ./
+    command:
+      --from_email=${FROM}
+      --to=${TO}
+      --server=${SERVER}
+      --password=${PASSWORD}
     volumes:
       - ${MLAT_SERVER_A_WORKDIR_PATH}:/data

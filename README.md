@@ -11,16 +11,16 @@ A Python tool designed to send email notifications about user updates in an ADS-
     pip install pytz
     ```
 
-## Environment Variables
+## Command-Line Flags Configuration
 
-To configure the tool, the following environment variables need to be set:
+To configure the tool, use the following command-line flags:
 
-- `FROM`: Email address from which notifications will be sent.
-- `TO`: Email address to which notifications will be sent.
-- `SERVER`: SMTP server to be used to send the email.
-- `USER`: User for the SMTP server. Defaults to the value of `FROM` if not specified.
-- `EMAIL_PASSWORD`: Password for the SMTP server.
-- `TIMEZONE`: The timezone you're operating in, defaults to `Europe/Rome`.
+- `--from_email`: Email address from which notifications will be sent.
+- `--to`: Email address to which notifications will be sent.
+- `--server`: SMTP server for sending the email.
+- `--user`: User for the SMTP server. If not specified, it defaults to the value provided in `--from_email`.
+- `--password`: Password for the SMTP server.
+- `--timezone`: The timezone you're operating in. Defaults to `Europe/Rome` if not specified.
 
 You have also to create a symylink to `/data/client.json` or create a docker-volume.
 ## Usage
@@ -28,7 +28,7 @@ You have also to create a symylink to `/data/client.json` or create a docker-vol
 1. Set up the environment variables mentioned above.
 2. Run the script:
     ```bash
-    python main.py
+    python your_script_name.py --from_email your_email@example.com --to receiver_email@example.com --server smtp.example.com --user your_username --password your_password --timezone America/New_York
     ```
 
 The script will constantly monitor the peer list and notify about any changes.

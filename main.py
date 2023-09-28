@@ -1,20 +1,31 @@
 import datetime
 import json
-import os
 import smtplib
 import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from difflib import ndiff
-
+import argparse
 import pytz
 
-FROM = os.environ.get('FROM')
-TO = os.environ.get('TO')
-SERVER = os.environ.get('SERVER')
-USER = os.environ.get('USER') if os.environ.get('USER') else FROM
-PASSWORD = os.environ.get('EMAIL_PASSWORD')
-TIMEZONE = os.environ.get('TIMEZONE') if os.environ.get('TIMEZONE') else 'Europe/Rome'
+
+parser = argparse.ArgumentParser(description="Sample script that accepts flags")
+
+parser.add_argument("--from_email", default=None, help="Sender's email address")
+parser.add_argument("--to", default=None, help="Receiver's email address")
+parser.add_argument("--server", default=None, help="Mail server")
+parser.add_argument("--user", default=None, help="Username for mail server access")
+parser.add_argument("--password", default=None, help="Password for mail server access")
+parser.add_argument("--timezone", default='Europe/Rome', help="Time zone")
+
+args = parser.parse_args()
+
+FROM_EMAIL = args.from_email
+TO = args.to
+SERVER = args.server
+USER = args.user if args.user else args.from_email
+PASSWORD = args.password
+TIMEZONE = args.timezone
 
 old_peers = {}
 
@@ -31,7 +42,7 @@ while True:
 
         # Setting up email
         msg = MIMEMultipart('alternative')
-        msg['From'] = FROM
+        msg['From'] = FROM_EMAIL
         msg['To'] = TO
         msg['Subject'] = f'Users Update - Aggiornamento Utenti {datetime.datetime.now().strftime("%d-%m-%y")}'
 
@@ -47,7 +58,7 @@ while True:
         # Send email using SMTP
         with smtplib.SMTP_SSL(SERVER, 465) as server:
             server.login(USER, PASSWORD)
-            server.sendmail(FROM, TO, msg.as_string())
+            server.sendmail(FROM_EMAIL, TO, msg.as_string())
 
         old_peers = lista_peer
         print("Email sent!")
