@@ -9,20 +9,18 @@ from difflib import ndiff
 
 import pytz
 
-CLIENTS_JSON = os.environ.get('CLIENTS_JSON')
 FROM = os.environ.get('FROM')
 TO = os.environ.get('TO')
 SERVER = os.environ.get('SERVER')
 USER = os.environ.get('SERVER') if os.environ.get('SERVER') else FROM
 PASSWORD = os.environ.get('EMAIL_PASSWORD')
 TIMEZONE = os.environ.get('TIMEZONE') if os.environ.get('TIMEZONE') else 'Europe/Rome'
-SLEEP = os.environ.get('UPDATE')
 
 old_peers = {}
 
 while True:
     # Read from clients.json
-    with open(CLIENTS_JSON, "r") as file:
+    with open("/data/clients.json", "r") as file:
         data = json.load(file)
 
     lista_peer = [str(token.split('_')[0]) for token in data.keys()]
@@ -56,4 +54,3 @@ while True:
         time.sleep(((datetime.datetime.now(pytz.timezone(TIMEZONE)).replace(hour=0, minute=0, second=0,
                                                                                  microsecond=0) + datetime.timedelta(
             days=1)) - datetime.datetime.now(pytz.timezone(TIMEZONE))).total_seconds())
-    time.sleep(SLEEP)

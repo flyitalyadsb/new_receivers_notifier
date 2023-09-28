@@ -1,6 +1,6 @@
 # Fly Italy ADS-B New Receivers Notifier
 
-A Python tool designed to send email notifications about user updates in an ADS-B network. This tool reads from a list of peers, detects changes and sends an email report detailing the differences.
+A Python tool designed to send email notifications about user updates in an ADS-B network. This tool reads from a list of peers, detects changes and sends an email every day report detailing the differences.
 
 ## Prerequisites
 
@@ -15,8 +15,6 @@ A Python tool designed to send email notifications about user updates in an ADS-
 
 To configure the tool, the following environment variables need to be set:
 
-- `CLIENTS_JSON`: Path to `clients.json`.
-- `UPDATE`: Determines the time interval (in seconds) the script waits between one execution and the next, effectively setting the frequency of checks.
 - `FROM`: Email address from which notifications will be sent.
 - `TO`: Email address to which notifications will be sent.
 - `SERVER`: SMTP server to be used to send the email.
@@ -24,6 +22,7 @@ To configure the tool, the following environment variables need to be set:
 - `EMAIL_PASSWORD`: Password for the SMTP server.
 - `TIMEZONE`: The timezone you're operating in, defaults to `Europe/Rome`.
 
+You have also to create a symylink to `/data/client.json` or create a docker-volume.
 ## Usage
 
 1. Set up the environment variables mentioned above.
