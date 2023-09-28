@@ -12,7 +12,7 @@ import pytz
 FROM = os.environ.get('FROM')
 TO = os.environ.get('TO')
 SERVER = os.environ.get('SERVER')
-USER = os.environ.get('SERVER') if os.environ.get('SERVER') else FROM
+USER = os.environ.get('USER') if os.environ.get('USER') else FROM
 PASSWORD = os.environ.get('EMAIL_PASSWORD')
 TIMEZONE = os.environ.get('TIMEZONE') if os.environ.get('TIMEZONE') else 'Europe/Rome'
 
