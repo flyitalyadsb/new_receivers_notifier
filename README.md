@@ -36,7 +36,7 @@ The script will constantly monitor the peer list and notify about any changes.
 
 ## Docker Deployment
 
-For convenience, this tool can also be deployed using Docker and Docker-Compose. Use the official image `flyitalyadsb/nome_programma`.
+For convenience, this tool can also be deployed using Docker and Docker-Compose. Use the official image `ghcr.io/flyitalyadsb/new_receivers_notifier`.
 
 Sample `docker-compose` configuration in `docker-compose.yaml`
 
