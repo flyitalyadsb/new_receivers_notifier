@@ -2,12 +2,15 @@ version: '3'
 
 services:
   notifier:
+    container_name: notifier
     image:  ghcr.io/flyitalyadsb/new_receivers_notifier
     #build: ./
+    entrypoint: /usr/local/bin/python main.py
+    restart: unless-stopped
     command:
-      --from_email=${FROM}
-      --to=${TO}
-      --server=${SERVER}
-      --password=${PASSWORD}
+      - "--from-email=${FROM}"
+      - "--to=${TO}"
+      - "--server=${SERVER}"
+      - "--password=${PASSWORD}"
     volumes:
       - ${MLAT_SERVER_A_WORKDIR_PATH}:/data

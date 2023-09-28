@@ -10,10 +10,10 @@ import pytz
 parser = argparse.ArgumentParser(description="A Python tool designed to send email notifications about user updates "
                                              "in an ADS-B network.")
 
-parser.add_argument("--from_email", default=None, help="Sender's email address", required=True)
+parser.add_argument("--from-email", default=None, help="Sender's email address", required=True)
 parser.add_argument("--to", default=None, help="Receiver's email address", required=True)
 parser.add_argument("--server", default=None, help="Mail server", required=True)
-parser.add_argument("--port", default=465, help="Port server")
+parser.add_argument("--port", default=465, type=int, help="Port server")
 parser.add_argument("--user", default=None, help="Username for mail server access")
 parser.add_argument("--password", default=None, help="Password for mail server access", required=True)
 parser.add_argument("--timezone", default='Europe/Rome', help="Time zone")
@@ -31,6 +31,7 @@ TIMEZONE = args.timezone
 old_peers = {}
 
 while True:
+    print("Started Fly Italy ADS-B New Receivers Notifier")
     current_date = datetime.datetime.now().strftime('%Y-%m-%d')
     # Read from clients.json
     with open("/data/clients.json", "r") as file:
@@ -68,16 +69,16 @@ while True:
         for i in range(max(len(added_dict), len(removed_dict))):
             html_output += "<tr>"
 
-            # Indice
+            # Index
             html_output += f"<td>{i}</td>"
 
-            # Aggiunto
+            # Added
             if i in added_dict:
                 html_output += f"<td>{added_dict[i]}</td>"
             else:
                 html_output += "<td></td>"
 
-            # Rimosso
+            # Removed
             if i in removed_dict:
                 html_output += f"<td>{removed_dict[i]}</td>"
             else:
@@ -104,7 +105,8 @@ while True:
             print(f"An unexpected error occurred on {current_date}: {e}")
 
         old_peers = lista_peer
-        time.sleep(((datetime.datetime.now(pytz.timezone(TIMEZONE)).replace(hour=0, minute=0, second=0,
-                                                                            microsecond=0) + datetime.timedelta(
-            days=1)) - datetime.datetime.now(pytz.timezone(TIMEZONE))).total_seconds())
-    print(f"Email not sent on {current_date}: same peers of yesterday.")
+    else:
+        print(f"Email not sent on {current_date}: same peers of yesterday.")
+    time.sleep(((datetime.datetime.now(pytz.timezone(TIMEZONE)).replace(hour=0, minute=0, second=0,
+                                                                        microsecond=0) + datetime.timedelta(
+        days=1)) - datetime.datetime.now(pytz.timezone(TIMEZONE))).total_seconds())
