@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart
 import argparse
 import pytz
 
-parser = argparse.ArgumentParser(description="Sample script that accepts flags")
+parser = argparse.ArgumentParser(description="A Python tool designed to send email notifications about user updates in an ADS-B network.")
 
 parser.add_argument("--from_email", default=None, help="Sender's email address", required=True)
 parser.add_argument("--to", default=None, help="Receiver's email address", required=True)
