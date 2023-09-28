@@ -50,7 +50,8 @@ while True:
             server.sendmail(FROM, TO, msg.as_string())
 
         old_peers = lista_peer
-
+        print("Email sent!")
         time.sleep(((datetime.datetime.now(pytz.timezone(TIMEZONE)).replace(hour=0, minute=0, second=0,
                                                                                  microsecond=0) + datetime.timedelta(
             days=1)) - datetime.datetime.now(pytz.timezone(TIMEZONE))).total_seconds())
+    print("Email not sent: same peers of yesterday.")
