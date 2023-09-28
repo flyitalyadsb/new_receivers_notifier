@@ -29,7 +29,7 @@ You have also to create a symylink to `/data/client.json` or create a docker-vol
 1. Set up the environment variables mentioned above.
 2. Run the script:
     ```bash
-    python your_script_name.py --from_email your_email@example.com --to receiver_email@example.com --server smtp.example.com --user your_username --password your_password --timezone America/New_York
+    python main.py --from_email your_email@example.com --to receiver_email@example.com --server smtp.example.com --user your_username --password your_password --timezone America/New_York
     ```
 
 The script will constantly monitor the peer list and notify about any changes.
