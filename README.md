@@ -18,6 +18,7 @@ To configure the tool, use the following command-line flags:
 - `--from_email`: Email address from which notifications will be sent.
 - `--to`: Email address to which notifications will be sent.
 - `--server`: SMTP server for sending the email.
+- `--port`: SMTP server's port for sending the email. Default `465`.
 - `--user`: User for the SMTP server. If not specified, it defaults to the value provided in `--from_email`.
 - `--password`: Password for the SMTP server.
 - `--timezone`: The timezone you're operating in. Defaults to `Europe/Rome` if not specified.
