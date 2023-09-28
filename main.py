@@ -9,12 +9,12 @@ import pytz
 
 parser = argparse.ArgumentParser(description="Sample script that accepts flags")
 
-parser.add_argument("--from_email", default=None, help="Sender's email address")
-parser.add_argument("--to", default=None, help="Receiver's email address")
-parser.add_argument("--server", default=None, help="Mail server")
+parser.add_argument("--from_email", default=None, help="Sender's email address", required=True)
+parser.add_argument("--to", default=None, help="Receiver's email address", required=True)
+parser.add_argument("--server", default=None, help="Mail server", required=True)
 parser.add_argument("--port", default=465, help="Port server")
 parser.add_argument("--user", default=None, help="Username for mail server access")
-parser.add_argument("--password", default=None, help="Password for mail server access")
+parser.add_argument("--password", default=None, help="Password for mail server access", required=True)
 parser.add_argument("--timezone", default='Europe/Rome', help="Time zone")
 
 args = parser.parse_args()
