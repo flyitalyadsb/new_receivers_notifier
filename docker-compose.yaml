@@ -2,8 +2,8 @@ version: '3'
 
 services:
   notifier:
-    image:  ghcr.io/flyitalyadsb/new_receivers_notifier
-    #build: ./
+    #image:  ghcr.io/flyitalyadsb/new_receivers_notifier
+    build: ./
     environment:
       CLIENTS_JSON: ${CLIENTS_JSON}
       FROM: ${FROM}
