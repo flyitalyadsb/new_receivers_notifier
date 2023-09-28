@@ -60,8 +60,8 @@ while True:
         {result}
         </div>
         """
-        html_output = "<table border='1'>"
-        html_output += "<thead><tr><th>Index</th><th>New</th><th>Removed/th></tr></thead>"
+        html_output += "<table border='1'>"
+        html_output += "<thead><tr><th>Index</th><th>New</th><th>Removed</th></tr></thead>"
         html_output += "<tbody>"
         for i in range(max(len(added_dict), len(removed_dict))):
             html_output += "<tr>"
