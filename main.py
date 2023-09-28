@@ -30,6 +30,7 @@ TIMEZONE = args.timezone
 old_peers = {}
 
 while True:
+    current_date = datetime.datetime.now().strftime('%Y-%m-%d')
     # Read from clients.json
     with open("/data/clients.json", "r") as file:
         data = json.load(file)
@@ -93,16 +94,16 @@ while True:
                 server.connect(SERVER, PORT)
                 server.login(USER, PASSWORD)
                 server.sendmail(FROM_EMAIL, TO, msg.as_string())
-            print("Email sent successfully!")
+            print(f"Email sent successfully on {current_date}!")
 
         except smtplib.SMTPException as e:
-            print(f"Failed to send email: {e}")
+            print(f"Failed to send email on {current_date}: {e} ")
 
         except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+            print(f"An unexpected error occurred on {current_date}: {e}")
 
         old_peers = lista_peer
         time.sleep(((datetime.datetime.now(pytz.timezone(TIMEZONE)).replace(hour=0, minute=0, second=0,
                                                                             microsecond=0) + datetime.timedelta(
             days=1)) - datetime.datetime.now(pytz.timezone(TIMEZONE))).total_seconds())
-    print("Email not sent: same peers of yesterday.")
+    print(f"Email not sent on {current_date}: same peers of yesterday.")
