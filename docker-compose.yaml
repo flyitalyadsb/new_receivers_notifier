@@ -5,7 +5,6 @@ services:
     container_name: notifier
     image:  ghcr.io/flyitalyadsb/new_receivers_notifier
     #build: ./
-    entrypoint: /usr/local/bin/python main.py
     restart: unless-stopped
     command:
       - "--from-email=${FROM}"

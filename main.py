@@ -60,7 +60,7 @@ while True:
         msg['Subject'] = f'Users Update - Aggiornamento Utenti {datetime.datetime.now().strftime("%d-%m-%y")}'
         html_output = f"""
         <div style="color: white; font-size: 1px; max-height: 0; overflow: hidden;">
-        {result}
+        new:{len(added_dict.keys())}, old: {len(removed_dict.keys())}
         </div>
         """
         html_output += "<table border='1'>"
